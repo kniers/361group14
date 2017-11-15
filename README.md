@@ -28,3 +28,11 @@ Then you commit your changes with:
 	git commit -m "My commit message. This is what I changed..."
 Finally, push your changes to the github repo:
 	git push origin
+	
+	
+Database instructions: To view the database or add/delete tables, go to https://tools.engr.oregonstate.edu/phpMyAdmin/index.php
+Username: cs340_kniers
+Password - I'll post it on slack
+Server choice: classmysql
+
+We can interact with it using the server javascript

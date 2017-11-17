@@ -1,15 +1,25 @@
 #screen {
-	width: 2.7in;
-	height: 4.8in;
+	width: 3.375in;
+	height: 6in;
 	border: solid;
+	margin: 0 auto;
+	background-color: #D7CEC7;
 }
 
 .content {
 	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	background-color: #D7CEC7;
+	color: #76323F;
+	font-family: 'Archivo Narrow', sans-serif;
 }
 
 h1 {
 	text-align: center;
+	margin:0;
+	margin-top: 20px;
+	text-size: 29px;
 }
 
 form {
@@ -17,12 +27,12 @@ form {
 }
 
 .button1 {
-    background-color: #4CAF50; /* Green */
+    background-color: #565656; /* Green */
 	margin: 0 auto; /* center */
 	font-weight: bold;
     border: none;
 	border-radius: 5px;
-    color: black;
+    color: #D7CEC7;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -32,6 +42,7 @@ form {
 
 input[type=text] {
 	width: 80%;
+	height: 20px;
 	display: block;
 	margin: 0 auto;
 	border: none;
@@ -40,6 +51,7 @@ input[type=text] {
 
 input[type=password] {
 	width: 80%;
+	height: 20px;
 	display: block;
 	margin: 0 auto;
 	border: none;
@@ -51,5 +63,33 @@ label {
 	display: block;
 	margin: 0 auto;
 	text-align: left;
+	font-size: 22px;
 }
 	
+#signInForm {
+	padding-top: 20px;
+}
+p{
+	text-align: center;
+}
+#regP {
+	text-align: left;
+	padding: 0 32px 0 32px;
+}
+
+#menuBar{
+	height:42px;
+	width: 100%;
+	padding-top: 386px;
+}
+.profileButton {
+	width:24.1571%;
+	height:100%;
+	display: table-cell;
+	vertical-align: top;
+}
+
+.disabled{
+	background-color: #37383a;
+	color: #FFFFFF;
+}

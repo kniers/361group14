@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: false }));
 app.use(session({secret:'mySecretPassword'}));
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 7526);
+app.set('port', 7364);
 app.use(express.static('public'));
 
 app.get('/',function(req,res){
@@ -25,6 +25,11 @@ app.get('/signup/',function(req,res){
 app.get('/signin/',function(req,res){
 	res.render('signin');
 });
+
+app.get('/profile/', function(req,res){
+	res.render('profile');
+});
+
 
 app.get('/favicon.ico', function(req, res) {
 	res.sendStatus(204);

@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: false }));
 app.use(session({secret:'mySecretPassword'}));
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 7364);
+app.set('port', 7363);
 app.use(express.static('public'));
 
 app.get('/',function(req,res){
@@ -35,6 +35,19 @@ app.get('/favicon.ico', function(req, res) {
 	res.sendStatus(204);
 });
 
+// Create a new account
+app.post('/newuser/', function(req, res, next) {
+	mysql.pool.query("INSERT INTO users (`username`,`password`) VALUES (?,?)", [req.body.newUsername, req.body.newPassword], function(err, result) {
+		if (err) {
+			next(err);
+			return;
+		}
+	});
+	res.render('signin');
+});
+
+	
+	
 app.use(function(req,res){
 	res.status(404);
 	res.render('404');

@@ -1,0 +1,18 @@
+<h1>Welcome!</h1>
+<br />
+<br />
+<form action="signup">
+	<input type="submit" class="button1" value="Sign Up" />
+</form>
+<br />
+<br />
+<br />
+<br />
+<form action="signin">
+	<label for="username">Username</label>
+	<input type="text" id="username"><br><br>
+	<label for="password">Password</label>
+	<input type="password" id="password"><br><br>
+	<input type="submit" class="button1" value="Sign In" />
+</form>
+<script src="/js/home.js"></script>

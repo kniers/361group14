@@ -39,7 +39,13 @@ app.get('/signup/',function(req,res){
 });
 
 app.get('/signin/',function(req,res){
-	res.render('signin');
+	sess = req.session;
+	if(sess.username) {
+   		res.render('signin');
+	}
+	else {
+    	res.redirect('/');
+	}
 });
 
 app.get('/profile/', function(req,res){

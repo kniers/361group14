@@ -1,9 +1,5 @@
 document.addEventListener('DOMContentLoaded', bindButtons); 
 
-//Set the port value
-var flip = "http://flip2.engr.oregonstate.edu:"
-var port = "3147"; 
-
 function bindButtons() {	
 	/* ---------------------------------------------------------------------------------------------
                                     Add New User
@@ -18,7 +14,7 @@ function bindButtons() {
 			var req = new XMLHttpRequest(); 
 			
 			//Contruct a URL that sends a GET request to /insert with all of the necessary data
-			var url = flip + port + "/add-user?" + "username=" + username + "&password=" + password; 
+			var url = "/add-user?" + "username=" + username + "&password=" + password; 
 			
 			//Make the call
 			req.open("GET", url, false); 

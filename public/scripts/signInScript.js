@@ -1,9 +1,5 @@
 document.addEventListener('DOMContentLoaded', bindButtons); 
 
-//Set the port value
-var flip = "http://flip2.engr.oregonstate.edu:"
-var port = "3147"; 
-
 function bindButtons() {	
 	/* ---------------------------------------------------------------------------------------------
                                     Log In
@@ -18,7 +14,7 @@ function bindButtons() {
 			var req = new XMLHttpRequest(); 
 			
 			//Contruct a URL that sends a GET request to /insert with all of the necessary data
-			var url = flip + port + "/login?" + "username=" + username + "&password=" + password; 
+			var url = "/login?" + "username=" + username + "&password=" + password; 
 			
 			//Make the call
 			req.open("GET", url, false); 
@@ -33,7 +29,7 @@ function bindButtons() {
 						alert("Failed to authenticate user.");
 					}
 					else {
-						window.location = flip + port + "/profile";
+						window.location = "/profile";
 					}
 				} 
 				//If the request status isn't valid, display an error message 
@@ -49,4 +45,5 @@ function bindButtons() {
 		
 		event.preventDefault(); //prevent the page from refreshing
 	});
-}
+}	
+	

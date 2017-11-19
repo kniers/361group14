@@ -1,8 +1,11 @@
 var express = require('express');
+var session = require('express-session');
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var app = express();
+
+app.use(session({secret: 'cs361'}));
 
 //Create a new pool
 var pool = mysql.createPool({
@@ -19,9 +22,16 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 3147);
 
+var sess;
 //Render home.handlebars when the user visits the page
 app.get('/',function(req,res){
-  res.render('home');
+	sess = req.session;
+	if(sess.username) {
+   		res.redirect('/profile/');
+	}
+	else {
+    	res.render('home');
+	}
 });
 
 app.get('/signup/',function(req,res){
@@ -33,7 +43,14 @@ app.get('/signin/',function(req,res){
 });
 
 app.get('/profile/', function(req,res){
-	res.render('profile');
+	sess = req.session;
+	if(sess.username) {
+   		res.render('profile');
+	}
+	else {
+    	res.redirect('/');
+	}
+	
 });
 
 
@@ -46,15 +63,27 @@ SELECT FUNCTIONS
 
 //This allows the user to login if the passed username and password are correct
 app.get('/login', function(req, res, next) {
-	var context = {};
-	pool.query('SELECT * FROM users WHERE username = ? AND password = ?', [req.query.username, req.query.password] ,function(err, rows, fields){
+	
+	pool.query('SELECT * FROM users WHERE username = ? AND password = ?', [req.query.username, req.query.password] ,function(err, rows){
 		if(err) {
 			next(err);
 			return;
 		}
-		//Send the JSON results back as a string, they will be parsed and assembled client-side
-		context.results = JSON.stringify(rows);	
-		res.send(context.results); 
+		//Send the JSON results back as a string, they will be parsed and assembled client-side	
+		if(rows.length==1)
+			sess = req.session;
+			sess.username=req.query.username;
+		res.send(rows); 
+	});
+});
+
+app.get('/logout',function(req,res){
+	req.session.destroy(function(err) {
+	  	if(err) {
+	    	console.log(err);
+	  	} else {
+	    	res.redirect('/');
+	  	}
 	});
 });
 

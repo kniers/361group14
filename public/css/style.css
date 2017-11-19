@@ -81,7 +81,7 @@ input[type=password] {
 }
 
 /*input box Styling */
-#username, #password{
+#username, #password, #registerUsername, #registerPassword{
 	height:40px;
     font-size:15pt;
 }

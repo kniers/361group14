@@ -13,10 +13,11 @@ DROP TABLE IF EXISTS `payment`;
 
 CREATE TABLE users (
 	id int AUTO_INCREMENT,
-	username varchar(255) NOT NULL,
+	username varchar(255) NOT NULL UNIQUE,
 	password varchar(64) NOT NULL,
 	rating int,
 	GPS boolean, 
+	driver boolean,
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 

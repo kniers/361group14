@@ -29,12 +29,12 @@ form {
 
 /*MAIN STYLING*/
 .button1 {
-    background-color: #565656; /* Green */
+	background-color: #E6F3F7; /* pale blue */
 	margin: 0 auto; /* center */
 	font-weight: bold;
     border: none;
 	border-radius: 5px;
-    color: #D7CEC7;
+    color: #334A5A;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -42,13 +42,33 @@ form {
     font-size: 14px;
 }
 
+/*IMAGES IN MAIN*/ 
+
+
+.mainImg {
+	max-width:55%;
+  	height:auto;
+  	margin-left: 72px ;
+  	margin-bottom: -25px;
+}
+.input-icon{
+	color: black;
+}
+
+.accountImg, .passwordImg {
+	max-width:10%;
+	margin-left: 260px ;
+  	margin-bottom: -41.75px;
+}
+
+
 input[type=text] {
 	width: 80%;
 	height: 20px;
 	display: block;
 	margin: 0 auto;
 	border: none;
-	border-bottom: 1px solid black;
+	border-bottom: 2px solid #334A5A;
 }
 
 input[type=password] {
@@ -57,7 +77,13 @@ input[type=password] {
 	display: block;
 	margin: 0 auto;
 	border: none;
-	border-bottom: 1px solid black;
+	border-bottom: 2px solid #334A5A;
+}
+
+/*input box Styling */
+#username, #password{
+	height:40px;
+    font-size:15pt;
 }
 
 label {

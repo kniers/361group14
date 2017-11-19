@@ -24,8 +24,8 @@ CREATE TABLE users (
 CREATE TABLE route (
 	id int AUTO_INCREMENT,
 	uid int,
-	startLocation geometry,
-	endLocation geometry,
+	startLocation varchar(255),
+	endLocation varchar(255),
 	startTime time,
 	endTime time,
 	mon boolean,

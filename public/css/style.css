@@ -3,15 +3,15 @@
 	height: 6in;
 	border: solid;
 	margin: 0 auto;
-	background-color: #D7CEC7;
+	background-color: #ADD8E6;
 }
 
 .content {
 	width: 100%;
 	margin: 0 auto;
 	padding: 0;
-	background-color: #D7CEC7;
-	color: #76323F;
+	background-color: #ADD8E6;
+	color: #334A5A;
 	font-family: 'Archivo Narrow', sans-serif;
 }
 
@@ -26,6 +26,8 @@ form {
 	margin: 0 auto;
 }
 
+
+/*MAIN STYLING*/
 .button1 {
     background-color: #565656; /* Green */
 	margin: 0 auto; /* center */

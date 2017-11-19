@@ -2,20 +2,16 @@
 
 
 <h1>Incentivized Carpooling</h1>
-<br />
-<br />
-
-<br />
-<br />
-<form id="signInForm" action="profile">
-	<label for="username">Username</label>
-	<input type="text" id="username"><br>
-	<label for="password">Password</label>
-	<input type="password" id="password"><br><br>
-	<input type="submit" id="login" class="button1" value="Sign In" />
-</form>
-<br />
-<p>Don't have an account?</p>
-<form action="signup">
-	<input type="submit" id="signUp" class="button1" value="Sign Up" />
-</form>
+	<img class = "mainImg" src = "img/carpooling.png" alt = "">
+	form id="signInForm" action="signin">
+		<div class = "input-icon"> <img class = "accountImg" src = "img/account.png" ></div>
+		<input type="text" id="username" placeholder="Username"><br>
+		<div class = "input-icon"> <img class = "passwordImg" src = "img/password.png" ></div>
+		<input type="password" id="password" placeholder="Password"><br><br>
+		<input type="submit" class="button1" value="Sign In" />
+	</form>
+	<br />
+	<p>Don't have an account?</p>
+	<form action="signup">
+		<input type="submit" class="button1" value="Sign Up" />
+	</form>

@@ -246,3 +246,9 @@ span.checkbox {
 a.changePassword {
     margin-left: 155px;
 }
+
+.profImg {
+    width: 60%;
+    margin-left: 58px;
+    margin-top: 27px;
+}

@@ -107,7 +107,7 @@ p{
 }
 
 div#menuandlog {
-    padding-top: 390px;
+    padding-top: 154px;
 }
 
 #username, #password, #registerUsername, #registerPassword{
@@ -215,6 +215,7 @@ span.checkbox {
 
 .boxes {
 	display:inline-block;
+	margin-top: 10px 
 }
 
 .trackingBox {

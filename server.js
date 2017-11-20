@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(express.static('public')); 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 3148);
+app.set('port', 3149);
 
 var sess;
 
@@ -89,9 +89,21 @@ app.get('/logout',function(req,res){
 	});
 });
 
+app.get('/newride',function(req,res){
+	req.session.destroy(function(err) {
+	  	if(err) {
+	    	res.render('newride');
+	  	} else {
+	    	res.redirect('/');
+	  	}
+	});
+});
+
+
 app.get('/favicon.ico', function(req, res) {
 	res.sendStatus(204);
 });
+
 
 /* ----------------------------------------------------------------------------------
 SELECT FUNCTIONS 
@@ -111,6 +123,20 @@ app.get('/login', function(req, res, next) {
 			sess.username=req.query.username;
 			sess.id=req.query.id;
 		res.send(rows); 
+	});
+});
+
+//This allows the user to view their routes on the "My Routes" page
+app.get('/get-routes', function(req, res, next) {
+	var context = {};
+	pool.query('SELECT * FROM route WHERE username = ?', [sess.username],function(err, rows){
+		if(err) {
+			next(err);
+			return;
+		}
+		//Send the JSON results back as a string, they will be parsed and assembled client-side
+		context.results = JSON.stringify(rows);		
+		res.send(context.results); 
 	});
 });
 
@@ -158,4 +184,3 @@ app.use(function(err, req, res, next){
 app.listen(app.get('port'),function(){
 	console.log('Express started on flip3.engr.oregonstate.edu:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
-

@@ -20,9 +20,10 @@ app.use(bodyParser.json());
 app.use(express.static('public')); 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 3147);
+app.set('port', 3148);
 
 var sess;
+
 //Render home.handlebars when the user visits the page
 app.get('/',function(req,res){
 	sess = req.session;
@@ -56,13 +57,42 @@ app.get('/profile/', function(req,res){
 	else {
     	res.redirect('/');
 	}
-	
 });
 
+app.get('/newroute/', function(req,res){
+	sess = req.session;
+	if(sess.username) {
+   		res.render('newroute');
+	}
+	else {
+    	res.redirect('/');
+	}
+});
+
+app.get('/myroutes/', function(req,res){
+	sess = req.session;
+	if(sess.username) {
+   		res.render('myroutes');
+	}
+	else {
+    	res.redirect('/');
+	}
+});
+
+app.get('/logout',function(req,res){
+	req.session.destroy(function(err) {
+	  	if(err) {
+	    	console.log(err);
+	  	} else {
+	    	res.redirect('/');
+	  	}
+	});
+});
 
 app.get('/favicon.ico', function(req, res) {
 	res.sendStatus(204);
 });
+
 /* ----------------------------------------------------------------------------------
 SELECT FUNCTIONS 
 ---------------------------------------------------------------------------------- */ 
@@ -79,17 +109,8 @@ app.get('/login', function(req, res, next) {
 		if(rows.length==1)
 			sess = req.session;
 			sess.username=req.query.username;
+			sess.id=req.query.id;
 		res.send(rows); 
-	});
-});
-
-app.get('/logout',function(req,res){
-	req.session.destroy(function(err) {
-	  	if(err) {
-	    	console.log(err);
-	  	} else {
-	    	res.redirect('/');
-	  	}
 	});
 });
 
@@ -110,6 +131,19 @@ app.get('/add-user', function(req, res, next) {
 	});
 });
 
+//This adds a new route under the user's id
+app.get('/add-route', function(req, res, next) {
+	var context = {};
+	pool.query("INSERT INTO route (`username`, `startLocation`, `endLocation`, `startTime`, `endTime`, `distance`) VALUES (?, ?, ?, ?, ?, ?)", [sess.username, req.query.startLocation, req.query.endLocation, req.query.startTime, req.query.endTime, req.query.distance], function(err, result){
+		if(err) {
+			next(err);
+			return;
+		}
+		context.results = "Route Added";
+		res.send(context.results);  
+	});
+});
+
 app.use(function(req,res){
 	res.status(404);
 	res.render('404');
@@ -124,3 +158,4 @@ app.use(function(err, req, res, next){
 app.listen(app.get('port'),function(){
 	console.log('Express started on flip3.engr.oregonstate.edu:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
+

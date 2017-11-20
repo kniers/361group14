@@ -110,7 +110,7 @@ div#menuandlog {
     padding-top: 154px;
 }
 
-#username, #password, #registerUsername, #registerPassword{
+#username, #password, #registerUsername, #registerPassword, #newPassword{
 	height:40px;
     font-size:15pt;
 }

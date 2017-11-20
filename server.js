@@ -58,6 +58,15 @@ app.get('/profile/', function(req,res){
     	res.redirect('/');
 	}
 });
+app.get('/changePassword/', function(req,res){
+	sess = req.session;
+	if(sess.username) {
+   		res.render('changePassword');
+	}
+	else {
+    	res.redirect('/');
+	}
+});
 
 app.get('/newroute/', function(req,res){
 	sess = req.session;

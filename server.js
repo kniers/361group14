@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(express.static('public')); 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 3624);
+app.set('port', 7526);
 
 var sess;
 

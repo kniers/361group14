@@ -6,13 +6,12 @@
 	background-color: #ADD8E6;
 }
 
-
 .content {
 	width: 100%;
 	margin: 0 auto;
 	padding: 0;
 	background-color: #ADD8E6;
-	color: #334A5A; /* Navy */
+	color: #334A5A;
 	font-family: 'Archivo Narrow', sans-serif;
 }
 
@@ -30,7 +29,7 @@ form {
 
 /*MAIN STYLING*/
 .button1 {
-    background-color: #E6F3F7; /* pale blue */
+	background-color: #E6F3F7; /* pale blue */
 	margin: 0 auto; /* center */
 	font-weight: bold;
     border: none;
@@ -62,6 +61,7 @@ form {
   	margin-bottom: -41.75px;
 }
 
+
 input[type=text] {
 	width: 80%;
 	height: 20px;
@@ -80,6 +80,12 @@ input[type=password] {
 	border-bottom: 2px solid #334A5A;
 }
 
+/*input box Styling */
+#username, #password, #registerUsername, #registerPassword{
+	height:40px;
+    font-size:15pt;
+}
+
 label {
 	width: 80%;
 	display: block;
@@ -87,8 +93,6 @@ label {
 	text-align: left;
 	font-size: 22px;
 }
-
-
 	
 #signInForm {
 	padding-top: 20px;
@@ -104,15 +108,7 @@ p{
 #menuBar{
 	height:42px;
 	width: 100%;
-}
-
-div#menuandlog {
-    padding-top: 390px;
-}
-
-#username, #password, #registerUsername, #registerPassword{
-	height:40px;
-    font-size:15pt;
+	padding-top: 386px;
 }
 .profileButton {
 	width:24%;
@@ -121,13 +117,18 @@ div#menuandlog {
 	vertical-align: top;
 }
 
-
-
 .disabled{
 	background-color: #37383a;
 	color: #FFFFFF;
 }
 
+<<<<<<< HEAD
+#overflow {
+	width: 3.3in;
+	height: 3in;
+	overflow: scroll;
+}
+=======
 
 /* Check Box Styling */ 
 .checkbox {
@@ -213,32 +214,4 @@ span.checkbox {
     margin-left: 30px;
 }
 
-.boxes {
-	display:inline-block;
-}
-
-.trackingBox {
-    float: right;
-    margin-top: -67px;
-    margin-left: 173px;
-}
-
-
-#LabelDP {
-	width: 77%;
-	display: block;
-	margin: 0 auto;
-	text-align: left;
-	font-size: 14px;
-}
-
-
-#LabelTracking {
-	width: 72%;
-	display: block;
-	margin: 0 auto;
-	text-align: right;
-	font-size: 14px;
-}
-
-
+>>>>>>> origin/master

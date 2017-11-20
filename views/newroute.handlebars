@@ -1,0 +1,33 @@
+<script src="/scripts/newRouteScript.js"></script>
+<h1>Incentivized Carpooling</h1>
+<h3>Add New Route</h3>
+<br/>
+<div id="overflow">
+	<form action="myroutes">
+		<label for="startLocation">Start Location</label>
+		<input type="text" id="startLocation"><br>
+		<label for="endLocation">End Location</label>
+		<input type="text" id="endLocation"><br>
+		<label for="depart">Departure Time</label>
+		<input type="time" id="depart"><br><br>
+		<label for="arrive">Arrival Time</label>
+		<input type="time" id="arrive"><br><br>
+		<label for="distance">Distance (miles)</label>
+		<input type="number" step="0.01" id="distance"><br><br>
+		<p>Repeat</p>
+		<label for="sunday"><input type="radio" id="sunday" name="sunday" value="0" />S</label>
+		<label for="monday"><input type="radio" id="monday" name="monday" value="0" />M</label>
+		<label for="tuesday"><input type="radio" id="tuesday" name="tuesday" value="0" />T</label>
+		<label for="wednesday"><input type="radio" id="wednesday" name="wednesday" value="0" />W</label>
+		<label for="thursday"><input type="radio" id="thursday" name="thursday" value="0" />T</label>
+		<label for="friday"><input type="radio" id="friday" name="friday" value="0" />F</label>
+		<label for="saturday"><input type="radio" id="saturday" name="saturday" value="0" />S</label>
+		<input type="submit" id="addRoute" class="button1" value="Add Route" />
+	</form>
+</div>
+<div id="menuBar">
+	<button id="findMatch" class="profileButton disabled">Find Match</button>
+	<button id="myRoutes" class="profileButton">My Routes </button>
+	<button id="newRide" class="profileButton">New Ride  </button>
+	<button id="profile" class="profileButton">Profile   </button>
+</div>

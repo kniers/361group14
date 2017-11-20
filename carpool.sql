@@ -23,21 +23,14 @@ CREATE TABLE users (
 
 CREATE TABLE route (
 	id int AUTO_INCREMENT,
-	uid int,
+	username varchar(255) NOT NULL,
 	startLocation varchar(255),
 	endLocation varchar(255),
 	startTime time,
 	endTime time,
-	mon boolean,
-	tue boolean,
-	wed boolean,
-	thur boolean,
-	fri boolean,
-	sat boolean,
-	sun boolean,
 	distance float,
 	PRIMARY KEY (id),
-	FOREIGN KEY (uid) REFERENCES users (id) ON DELETE CASCADE
+	FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE ride (

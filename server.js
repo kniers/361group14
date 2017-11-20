@@ -134,7 +134,7 @@ app.get('/add-user', function(req, res, next) {
 //This adds a new route under the user's id
 app.get('/add-route', function(req, res, next) {
 	var context = {};
-	pool.query("INSERT INTO route (`uid`, `startLocation`, `endLocation`, `startTime`, `endTime`, `mon`, `tue`, `wed`, `thur`, `fri`, `sat`, `sun`, `distance`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [sess.id, req.query.startLocation, req.query.endLocation, req.query.startTime, req.query.endTime, req.query.monday, req.query.tuesday, req.query.wednesday, req.query.thursday, req.query.friday, req.query.saturday, req.query.sunday, req.query.distance], function(err, result){
+	pool.query("INSERT INTO route (`username`, `startLocation`, `endLocation`, `startTime`, `endTime`, `distance`) VALUES (?, ?, ?, ?, ?, ?)", [sess.username, req.query.startLocation, req.query.endLocation, req.query.startTime, req.query.endTime, req.query.distance], function(err, result){
 		if(err) {
 			next(err);
 			return;

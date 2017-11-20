@@ -1,0 +1,23 @@
+<script src="/scripts/newRouteScript.js"></script>
+<h1>Incentivized Carpooling</h1>
+<h3>Add New Route</h3>
+<br/>
+<form action="myroutes">
+	<label for="startLocation">Start Location</label>
+	<input type="text" id="startLocation"><br>
+	<label for="endLocation">End Location</label>
+	<input type="text" id="endLocation"><br>
+	<label for="depart">Departure Time</label>
+	<input type="time" id="depart"><br><br>
+	<label for="arrive">Arrival Time</label>
+	<input type="time" id="arrive"><br><br>
+	<label for="distance">Distance (miles)</label>
+	<input type="number" step="0.01" id="distance"><br><br>
+	<input type="submit" id="addRoute" class="button1"/>
+</form>
+<div id="menuBar">
+	<button id="findMatch" class="profileButton disabled">Find Match</button>
+	<button id="myRoutes" class="profileButton">My Routes </button>
+	<button id="newRide" class="profileButton">New Ride  </button>
+	<button id="profile" class="profileButton">Profile   </button>
+</div>

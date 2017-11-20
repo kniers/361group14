@@ -49,34 +49,6 @@ app.get('/signin/',function(req,res){
 	}
 });
 
-app.get('/changePassword/',function(req,res){
-	sess = req.session;
-	if(sess.username) {
-   		res.render('changePassword');
-	}
-	else {
-    	res.redirect('/');
-	}
-});
-
-app.get('/updatePassword/',function(req,res){
-	sess = req.session;
-	if(sess.username) {
-   		pool.query('UPDATE users SET password = ? WHERE username = ?', [req.query.password, sess.username], function(err, result){
-			if(err) {
-				next(err);
-				return;
-			}
-			res.send("Password Updated");  
-		});
-	}
-	else {
-    	res.redirect('/');
-	}
-});
-
-
-
 app.get('/profile/', function(req,res){
 	sess = req.session;
 	if(sess.username) {
@@ -117,8 +89,7 @@ app.get('/logout',function(req,res){
 	});
 });
 
-
-app.get('/newride',function(req,res){
+app.get('/newride/', function(req,res){
 	sess = req.session;
 	if(sess.username) {
    		res.render('newride');

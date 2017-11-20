@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(express.static('public')); 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 7526);
+app.set('port', 3419);
 
 var sess;
 
@@ -89,14 +89,14 @@ app.get('/logout',function(req,res){
 	});
 });
 
-app.get('/newride',function(req,res){
-	req.session.destroy(function(err) {
-	  	if(err) {
-	    	res.render('newride');
-	  	} else {
-	    	res.redirect('/');
-	  	}
-	});
+app.get('/newride/', function(req,res){
+	sess = req.session;
+	if(sess.username) {
+   		res.render('newride');
+	}
+	else {
+    	res.redirect('/');
+	}
 });
 
 

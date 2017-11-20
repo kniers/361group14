@@ -90,13 +90,13 @@ app.get('/logout',function(req,res){
 });
 
 app.get('/newride',function(req,res){
-	req.session.destroy(function(err) {
-	  	if(err) {
-	    	res.render('newride');
-	  	} else {
-	    	res.redirect('/');
-	  	}
-	});
+	sess = req.session;
+	if(sess.username) {
+   		res.render('newride');
+	}
+	else {
+    	res.redirect('/');
+	}
 });
 
 

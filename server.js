@@ -89,11 +89,8 @@ app.get('/logout',function(req,res){
 	});
 });
 
-<<<<<<< HEAD
-app.get('/newride/', function(req,res){
-=======
+
 app.get('/newride',function(req,res){
->>>>>>> 87e6d5c485967a61f175f3f53a75f7b6f4f8299a
 	sess = req.session;
 	if(sess.username) {
    		res.render('newride');

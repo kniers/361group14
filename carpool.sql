@@ -23,36 +23,30 @@ CREATE TABLE users (
 
 CREATE TABLE route (
 	id int AUTO_INCREMENT,
-	uid int,
+	username varchar(255),
+	name varchar(255) UNIQUE,
 	startLocation varchar(255),
 	endLocation varchar(255),
 	startTime time,
 	endTime time,
-	mon boolean,
-	tue boolean,
-	wed boolean,
-	thur boolean,
-	fri boolean,
-	sat boolean,
-	sun boolean,
 	distance float,
 	PRIMARY KEY (id),
-	FOREIGN KEY (uid) REFERENCES users (id) ON DELETE CASCADE
+	FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE ride (
 	id int AUTO_INCREMENT,
-	rid int,
-	pid int,
-	did int,
-	distance float,
+	routeName varchar(255),
+	username varchar(255),
+	driverName varchar(255),
 	mileage int,
+	rating int,
 	price float,
 	date date,
 	PRIMARY KEY (id),
-	FOREIGN KEY (rid) REFERENCES route (id),
-	FOREIGN KEY (pid) REFERENCES users (id),
-	FOREIGN KEY (did) REFERENCES users (id)
+	FOREIGN KEY (routeName) REFERENCES route (name),
+	FOREIGN KEY (username) REFERENCES users (username),
+	FOREIGN KEY (driverName) REFERENCES users (username)
 ) ENGINE=InnoDB;
 
 CREATE TABLE payment (

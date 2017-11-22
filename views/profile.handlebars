@@ -1,31 +1,35 @@
+<script src="/scripts/profileScript.js"></script>
+
 <h1>Incentivized Carpooling</h1>
 	<div class = "boxes">
+	
 		<div>
-				<label id = "LabelDP" for="dp">Driver/Passenger</label>
+			<label id = "LabelDP" for="dp">Passenger/Driver</label>
 			<span class="checkbox">
-			    <input type="checkbox">
-			    <label data-on="Driver" data-off="Passenger"></label>
+				<input type="checkbox" id="driverToggle" value ="ON">
+				<label data-on="Driver" data-off="Passenger"></label>
 			</span>
 		</div>
+		
 		<div class = "trackingBox">
-					<label id = "LabelTracking" for="dp">Enable Tracking</label>
+			<label id = "LabelTracking" for="dp">GPS Tracking</label>
 			<span class="checkbox">
-			    <input type="checkbox">
-			    <label data-on="ON" data-off="OFF"></label>
+				<input type="checkbox" id="gpsToggle" value="ON">
+				<label data-on="ON" data-off="OFF"></label>
 			</span>
 		</div>
-
-
+		
 	</div>
 </div>
 <div > <img class = "profImg" src = "img/profile.png" ></div>
-<div id = "menuandlog">
-	<a class = "logout" href="/logout">Logout</a>
+<table id="info"></table>
+<div id = "menuandlog3">
 	<a class= "changePassword" href="/changePassword"> Change Password</a>
+	<a class = "logout" href="/logout">Logout</a>
 	<div class="menuBar">
 		<button id="findMatch" class="profileButton disabled">Find Match</button>
 		<button id="myRoutes" class="profileButton">My Routes </button>
-		<button id="newRide" class="profileButton">New Ride  </button>
+		<button id="myRides" class="profileButton">My Rides  </button>
 		<button id="profile" class="profileButton">Profile   </button>
 	</div>
 </div>

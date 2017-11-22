@@ -10,9 +10,9 @@ app.use(session({secret: 'cs361'}));
 //Create a new pool
 var pool = mysql.createPool({
   host  : 'classmysql.engr.oregonstate.edu',
-  user  : 'cs340_kniers',
-  password: '7685',
-  database: 'cs340_kniers'
+  user  : 'cs340_merrillc',
+  password: '2710',
+  database: 'cs340_merrillc'
 });
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(express.static('public')); 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 7526);
+app.set('port', 3142);
 
 var sess;
 
@@ -98,6 +98,16 @@ app.get('/logout',function(req,res){
 	});
 });
 
+app.get('/myrides/', function(req,res){
+	sess = req.session;
+	if(sess.username) {
+   		res.render('myrides');
+	}
+	else {
+    	res.redirect('/');
+	}
+});
+
 app.get('/newride/', function(req,res){
 	sess = req.session;
 	if(sess.username) {
@@ -149,6 +159,90 @@ app.get('/get-routes', function(req, res, next) {
 	});
 });
 
+//This retrieves the distance of a given route
+app.get('/get-distance', function(req, res, next) {
+	var context = {};
+	pool.query('SELECT * FROM route WHERE username = ? AND name = ?', [sess.username, req.query.name],function(err, rows){
+		if(err) {
+			next(err);
+			return;
+		}
+		//Send the JSON results back as a string, they will be parsed and assembled client-side
+		context.results = JSON.stringify(rows);		
+		res.send(context.results); 
+	});
+});
+
+//This allows the user to view their routes on the "My Routes" page
+app.get('/get-user', function(req, res, next) {
+	var context = {};
+	pool.query('SELECT * FROM users WHERE username = ?', [sess.username], function(err, rows){
+		if(err) {
+			next(err);
+			return;
+		}
+		//Send the JSON results back as a string, they will be parsed and assembled client-side
+		context.results = JSON.stringify(rows);		
+		res.send(context.results); 
+	});
+});
+
+//Selects the comprehensive list of drivers
+app.get('/get-drivers', function(req, res, next) {
+	var context = {};
+	pool.query('SELECT * FROM users', function(err, rows, fields){
+		if(err) {
+			next(err);
+			return;
+		}
+		//Send the JSON results back as a string, they will be parsed and assembled client-side
+		context.results = JSON.stringify(rows);		
+		res.send(context.results); 
+	});
+});
+
+//Selects the comprehensive list of drivers
+app.get('/get-routes', function(req, res, next) {
+	var context = {};
+	pool.query('SELECT * FROM route WHERE username=?', [sess.username], function(err, rows, fields){
+		if(err) {
+			next(err);
+			return;
+		}
+		//Send the JSON results back as a string, they will be parsed and assembled client-side
+		context.results = JSON.stringify(rows);		
+		res.send(context.results); 
+	});
+});
+
+//Selects all rides for a given user
+app.get('/get-rides', function(req, res, next) {
+	var context = {};
+	pool.query('SELECT * FROM ride WHERE username=?', [sess.username], function(err, rows, fields){
+		if(err) {
+			next(err);
+			return;
+		}
+		//Send the JSON results back as a string, they will be parsed and assembled client-side
+		context.results = JSON.stringify(rows);		
+		res.send(context.results); 
+	});
+});
+
+//Gets all rides by a particular driver, used for rating calculation
+app.get('/get-driver-rides', function(req, res, next) {
+	var context = {};
+	pool.query('SELECT * FROM ride WHERE driverName=?', [req.query.name], function(err, rows, fields){
+		if(err) {
+			next(err);
+			return;
+		}
+		//Send the JSON results back as a string, they will be parsed and assembled client-side
+		context.results = JSON.stringify(rows);		
+		res.send(context.results); 
+	});
+});
+
 /* ----------------------------------------------------------------------------------
 INSERT FUNCTIONS 
 ---------------------------------------------------------------------------------- */ 
@@ -169,7 +263,7 @@ app.get('/add-user', function(req, res, next) {
 //This adds a new route under the user's id
 app.get('/add-route', function(req, res, next) {
 	var context = {};
-	pool.query("INSERT INTO route (`username`, `startLocation`, `endLocation`, `startTime`, `endTime`, `distance`) VALUES (?, ?, ?, ?, ?, ?)", [sess.username, req.query.startLocation, req.query.endLocation, req.query.startTime, req.query.endTime, req.query.distance], function(err, result){
+	pool.query("INSERT INTO route (`username`, `name`, `startLocation`, `endLocation`, `startTime`, `endTime`, `distance`) VALUES (?, ?, ?, ?, ?, ?, ?)", [sess.username, req.query.name, req.query.startLocation, req.query.endLocation, req.query.startTime, req.query.endTime, req.query.distance], function(err, result){
 		if(err) {
 			next(err);
 			return;
@@ -179,6 +273,49 @@ app.get('/add-route', function(req, res, next) {
 	});
 });
 
+//This adds a new ride under the user's id
+app.get('/add-ride', function(req, res, next) {
+	var context = {};
+	pool.query("INSERT INTO ride (`routeName`, `username`, `driverName`, `mileage`, `rating`, `price`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?)", [req.query.name, sess.username, req.query.driver, req.query.mileage, req.query.rating, req.query.price, req.query.date], function(err, result){
+		if(err) {
+			next(err);
+			return;
+		}
+		context.results = "Ride Added";
+		res.send(context.results);  
+	});
+});
+
+/* ----------------------------------------------------------------------------------
+UPDATE FUNCTION
+---------------------------------------------------------------------------------- */ 
+//This allows the user to update an existing row in the database
+app.get('/update-rating',function(req,res,next){
+  var context = {};
+  pool.query("SELECT * FROM users WHERE username=?", [req.query.name], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+    if(result.length == 1){
+      var curVals = result[0];
+      pool.query("UPDATE users SET rating=?",
+        [req.query.rating],
+        function(err, result){
+        if(err){
+          next(err);
+          return;
+        }
+        context.results = "Row Updated";
+        res.send(context.results); 
+      });
+    }
+  });
+});
+
+/* ----------------------------------------------------------------------------------
+MISC.
+---------------------------------------------------------------------------------- */ 
 app.use(function(req,res){
 	res.status(404);
 	res.render('404');

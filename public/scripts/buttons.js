@@ -2,8 +2,8 @@ document.getElementById("myRoutes").onclick = function(){
 	window.location.href = "/myroutes";
 	//alert("button clicked");
 };
-document.getElementById("newRide").onclick = function(){
-	window.location.href = "/newride";
+document.getElementById("myRides").onclick = function(){
+	window.location.href = "/myrides";
 	//alert("button clicked");
 };
 document.getElementById("profile").onclick = function(){

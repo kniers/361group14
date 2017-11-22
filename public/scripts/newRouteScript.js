@@ -6,18 +6,19 @@ function bindButtons() {
 	-----------------------------------------------------------------------------------------------*/ 
 	document.getElementById('addRoute').addEventListener('click', function(event) {
 		//Get the data from the form to use in the URL
+		var name = document.getElementById('name').value; 
 		var startLocation= document.getElementById('startLocation').value; 
 		var endLocation = document.getElementById('endLocation').value;  
 		var startTime = document.getElementById('depart').value;  
 		var endTime = document.getElementById('arrive').value;  
 		var distance = document.getElementById('distance').value;   
 		
-	if (startLocation != "" && endLocation != "" && startTime != "" && endTime != "" && distance != "") {
+	if (name != "" && startLocation != "" && endLocation != "" && startTime != "" && endTime != "" && distance != "") {
 			//Create a new HTTP request
 			var req = new XMLHttpRequest(); 
 			
 			//Contruct a URL that sends a GET request to /add-route with all of the necessary data
-			var url = "/add-route?" + "startLocation=" + startLocation + "&endLocation=" + endLocation + "&startTime=" + startTime + "&endTime=" + endTime + "&distance=" + distance; 
+			var url = "/add-route?" +"name=" + name + "&startLocation=" + startLocation + "&endLocation=" + endLocation + "&startTime=" + startTime + "&endTime=" + endTime + "&distance=" + distance; 
 			
 			//Make the call
 			req.open("GET", url, false); 

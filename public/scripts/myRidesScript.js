@@ -23,7 +23,7 @@ function getRides() {
 				var rowCount = 0
 				
 				//Add routes to routes table
-				for (i = 0; i <= response.length; i++) {	
+				for (i = 0; i < response.length; i++) {	
 					//Add rows to table
 					var date = document.getElementById("rides").insertRow(rowCount);
 					rowCount = rowCount + 1;
@@ -46,7 +46,7 @@ function getRides() {
 			}
 			//Otherwise notify the user that they have no routes
 			else {
-				var message = document.getElementById("no routes");
+				var message = document.getElementById("noroutes");
 				message.innerHTML = "You have no rides, you can add one by clicking below";
 			}
 			

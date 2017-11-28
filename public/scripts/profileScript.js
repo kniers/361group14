@@ -1,4 +1,16 @@
-document.addEventListener('DOMContentLoaded', getUserInfo); 		
+document.addEventListener('DOMContentLoaded', getUserInfo);
+document.addEventListener('DOMContentLoaded', addResetPassword);
+
+function addResetPassword() {
+	var a = document.createElement('a');
+	var resetText = document.createTextNode("Change Password");
+	a.appendChild(resetText);
+	a.href = "/changePassword";
+	a.classList.add("changePassword");
+	var footer = document.getElementById("footer");
+	var menuBar = document.getElementById("menuBar");
+	footer.insertBefore(a, menuBar);
+}
 
 /* ---------------------------------------------------------------------------------------------
                                  Get Routes

@@ -31,18 +31,18 @@ app.get('/',function(req,res){
    		res.redirect('/profile/');
 	}
 	else {
-    	res.render('home');
+    	res.render('home', {layout: 'mainNoButtons'});
 	}
 });
 
 app.get('/signup/',function(req,res){
-	res.render('signup');
+res.render('signup', {layout: 'mainNoButtons'});
 });
 
 app.get('/signin/',function(req,res){
 	sess = req.session;
 	if(sess.username) {
-   		res.render('signin');
+   		res.render('signin', {layout: 'mainNoButtons'});
 	}
 	else {
     	res.redirect('/');
@@ -61,7 +61,7 @@ app.get('/profile/', function(req,res){
 app.get('/changePassword/', function(req,res){
 	sess = req.session;
 	if(sess.username) {
-   		res.render('changePassword');
+   		res.render('changePassword', {layout: 'mainNoButtons'});
 	}
 	else {
     	res.redirect('/');

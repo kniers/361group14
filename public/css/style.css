@@ -4,6 +4,7 @@
 	border: solid;
 	margin: 0 auto;
 	background-color: #ADD8E6;
+	position: relative;
 }
 
 
@@ -13,6 +14,15 @@
 	padding: 0;
 	background-color: #ADD8E6;
 	color: #334A5A; /* Navy */
+	font-family: 'Archivo Narrow', sans-serif;
+}
+
+.footer {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	position: absolute;
+	bottom: 0;
 	font-family: 'Archivo Narrow', sans-serif;
 }
 
@@ -243,7 +253,12 @@ span.checkbox {
 
 
 a.changePassword {
-    margin-left: 155px;
+	position: absolute;
+	right: 5px;
+}
+
+a.logout {
+	margin-left: 5px;
 }
 
 .profImg {

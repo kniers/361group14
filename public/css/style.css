@@ -4,6 +4,7 @@
 	border: solid;
 	margin: 0 auto;
 	background-color: #ADD8E6;
+  overflow: scroll;
 }
 
 
@@ -223,7 +224,8 @@ span.checkbox {
 
 .boxes {
 	display:inline-block;
-	margin-top: 10px 
+	margin-top: 10px;
+   
 }
 
 .trackingBox {

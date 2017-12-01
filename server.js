@@ -10,9 +10,9 @@ app.use(session({secret: 'cs361'}));
 //Create a new pool
 var pool = mysql.createPool({
   host  : 'classmysql.engr.oregonstate.edu',
-  user  : 'cs340_merrillc',
-  password: '2710',
-  database: 'cs340_merrillc'
+  user  : 'cs340_kniers',
+  password: '7685',
+  database: 'cs340_kniers'
 });
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(express.static('public')); 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 3142);
+app.set('port', 7526);
 
 var sess;
 
@@ -49,19 +49,65 @@ app.get('/signin/',function(req,res){
 	}
 });
 
-app.get('/profile/', function(req,res){
+app.get('/deletePayment/',function(req,res){
 	sess = req.session;
 	if(sess.username) {
-   		res.render('profile');
+   		pool.query('DELETE FROM payment WHERE uid = (SELECT id FROM users WHERE username = ?)', [sess.username], function(err, result){
+			if(err) {
+				next(err);
+				return;
+			}
+			res.redirect('/profile');
+		});
 	}
 	else {
     	res.redirect('/');
 	}
 });
+
+app.get('/profile/', function(req,res){
+	var context ={}
+	sess = req.session;
+	if(sess.username) {
+   		pool.query('SELECT * FROM users INNER JOIN payment ON users.id = payment.uid WHERE username = ?', [sess.username], function(err, rows){
+			if(err) {
+				next(err);
+				return;
+			}
+			if(rows.length==0)
+				res.render('addPayment');
+			else{
+				var cardNumber = rows[0]['cardNumber']
+				context.cardNumber = cardNumber.toString().replace(/\d(?=\d{4})/g, "*");
+				res.render('profile',context);
+			}
+		});
+   	}
+	else {
+    	res.redirect('/');
+	}
+});
+
 app.get('/changePassword/', function(req,res){
 	sess = req.session;
 	if(sess.username) {
    		res.render('changePassword', {layout: 'mainNoButtons'});
+	}
+	else {
+    	res.redirect('/');
+	}
+});
+
+app.get('/updatePassword/',function(req,res){
+	sess = req.session;
+	if(sess.username) {
+   		pool.query('UPDATE users SET password = ? WHERE username = ?', [req.query.password, sess.username], function(err, result){
+			if(err) {
+				next(err);
+				return;
+			}
+			res.send("Password Updated");  
+		});
 	}
 	else {
     	res.redirect('/');
@@ -316,6 +362,25 @@ app.get('/update-rating',function(req,res,next){
 /* ----------------------------------------------------------------------------------
 MISC.
 ---------------------------------------------------------------------------------- */ 
+
+//This adds a payment under the user's id
+app.get('/addPayment/', function(req, res, next) {
+	sess = req.session;
+	if(sess.username) {
+   		pool.query('INSERT INTO payment (cardNumber, uid, cvv, expMonth, expYear) VALUES ( ?, (SELECT users.id FROM users WHERE users.username = ?), ?, ?, ?)', 
+   			[req.query.cardNumber, sess.username,req.query.cvv,req.query.expMonth, req.query.expYear], function(err, result){
+			if(err) {
+				next(err);
+				return;
+			}
+			res.send("Payment Added"); 
+		});
+	}
+	else {
+    	res.redirect('/');
+	}
+});
+
 app.use(function(req,res){
 	res.status(404);
 	res.render('404');

@@ -2,9 +2,9 @@
 
 <h1>Incentivized Carpooling</h1>
 	<div class = "boxes">
-	
-		<div>
-			<label id = "LabelDP" for="dp">Passenger/Driver</label>
+
+		<div class="dpBox">
+				<label id = "LabelDP" for="dp">Driver/Passenger</label>
 			<span class="checkbox">
 				<input type="checkbox" id="driverToggle" value ="ON">
 				<label data-on="Driver" data-off="Passenger"></label>
@@ -19,7 +19,12 @@
 			</span>
 		</div>
 		
+
 	</div>
 <!-- </div> -->
 <div > <img class = "profImg" src = "img/profile.png" ></div>
-<table id="info"></table>
+
+<div>
+	<p id="regP">Credit Card Number: {{cardNumber}}</p><br>
+	<a href="/deletePayment"> Delete Card</a>
+</div>

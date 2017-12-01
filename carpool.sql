@@ -2,12 +2,10 @@
 # CS361 Carpool Database
 #####################
 
-
-DROP TABLE IF EXISTS `users`;
-DROP TABLE IF EXISTS `route`;
-DROP TABLE IF EXISTS `ride`;
 DROP TABLE IF EXISTS `payment`;
-
+DROP TABLE IF EXISTS `ride`;
+DROP TABLE IF EXISTS `route`;
+DROP TABLE IF EXISTS `users`;
 
 #######create########
 

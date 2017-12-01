@@ -137,6 +137,10 @@ div#menuandlog3 {
 	color: #FFFFFF;
 }
 
+.enabled {
+  background-color: #a7efda;
+}
+
 
 /* Check Box Styling */ 
 .checkbox {
